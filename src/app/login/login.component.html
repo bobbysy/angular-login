@@ -1,0 +1,65 @@
+<div fxLayoutAlign="center center">
+  <mat-card *ngIf="!isLoggedIn" class="default-card">
+    <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="logo" />
+    <mat-card-header>
+      <mat-card-title>Sign in</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form
+        name="form"
+        (ngSubmit)="f.form.valid && onSubmit()"
+        #f="ngForm"
+        novalidate
+      >
+        <div>
+          <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              type="text"
+              name="username"
+              [(ngModel)]="form.username"
+              required
+              #username="ngModel"
+            />
+            <mat-error *ngIf="f.submitted && username.invalid"
+              >Username is required!
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              type="password"
+              name="password"
+              [(ngModel)]="form.password"
+              required
+              minlength="6"
+              #password="ngModel"
+            />
+            <mat-error *ngIf="password.errors?.required"
+              >Password is required
+            </mat-error>
+            <mat-error *ngIf="password.errors?.minlength"
+              >Password must be at least 6 characters
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-button">
+          <button mat-button>Login</button>
+        </div>
+        <div>
+          <mat-error *ngIf="f.submitted && isLoginFailed"
+            >Login failed: {{ errorMessage }}
+          </mat-error>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <div *ngIf="isLoggedIn">Logged in as {{ username }}.</div>
+</div>

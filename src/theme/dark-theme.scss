@@ -1,0 +1,9 @@
+$angular-login-dark-primary: mat-palette($mat-grey, 700, 300, 900);
+$angular-login-dark-accent: mat-palette($mat-blue-grey, 400);
+$angular-login-dark-warn: mat-palette($mat-red, 500);
+
+$angular-login-dark-theme: mat-dark-theme(
+    $angular-login-dark-primary,
+    $angular-login-dark-accent,
+    $angular-login-dark-warn
+);

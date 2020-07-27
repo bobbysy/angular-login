@@ -1,0 +1,77 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div>
+    <img
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="profile-img-card"
+    />
+  </div>
+
+  <form
+    *ngIf="!isSuccessful"
+    name="form"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    #f="ngForm"
+    novalidate
+  >
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          type="text"
+          name="username"
+          [(ngModel)]="form.username"
+          required
+          minlength="3"
+          maxlength="20"
+          #username="ngModel"
+        />
+        <mat-error *ngIf="f.submitted && username.errors?.required"
+          >Username is required!
+        </mat-error>
+        <mat-error *ngIf="f.submitted && username.errors?.minlength"
+          >Username must be at least 3 characters
+        </mat-error>
+        <mat-error *ngIf="f.submitted && username.errors?.maxlength"
+          >Username must be at most 20 characters
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          #password="ngModel"
+        />
+        <mat-error *ngIf="password.errors?.required"
+          >Password is required
+        </mat-error>
+        <mat-error *ngIf="password.errors?.minlength"
+          >Password must be at least 6 characters
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <button mat-button>Sign Up</button>
+    </div>
+
+    <div class="form-group">
+      <mat-error *ngIf="f.submitted && isSignUpFailed"
+        >Signup failed!<br />{{ errorMessage }}
+      </mat-error>
+    </div>
+  </form>
+
+  <div class="alert alert-success" *ngIf="isSuccessful">
+    Your registration is successful!
+  </div>
+</div>

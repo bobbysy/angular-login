@@ -1,0 +1,6 @@
+{
+  "src/**/*.{ts}": [
+    "prettier --write src/**/*",
+    "npx eslint -c .eslintrc.json --ext=ts src/app -f html -o eslintResult.html"
+  ]
+}

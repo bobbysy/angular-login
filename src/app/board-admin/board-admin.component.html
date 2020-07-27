@@ -1,0 +1,31 @@
+<div class="container" fxLayout="column">
+  <div>
+    <header>
+      <p>{{ content }}</p>
+      <a wmRedirect="https://angular.io"
+        >Redirects declaratively using wmRedirect</a
+      >
+    </header>
+  </div>
+  <div>
+    <mat-grid-list
+      class="grid-list"
+      [responsive]="true"
+      (responsiveColsChange)="cols = $event"
+      rowHeight="72"
+      gutterSize="8px"
+    >
+      <mat-grid-tile *ngFor="let item of links" class="mat-grid-tile">
+        <a
+          class="grid-list-item mat-elevation-z2"
+          mat-ripple
+          wmRedirect="{{ item.link }}"
+        >
+          <mat-icon>{{ item.icon }}</mat-icon>
+          <span class="flex-remain">{{ item.name }}</span>
+          <button mat-icon-button (click)="$event.preventDefault()"></button>
+        </a>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

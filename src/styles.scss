@@ -1,1 +1,86 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+@import "./theme/light-theme";
+@import "./theme/dark-theme";
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+//$angular-login-primary: mat-palette($mat-indigo);
+//$angular-login-accent: mat-palette($mat-pink, A200, A100, A400);
+//$angular-login-warn: mat-palette($mat-red);
+//$angular-login-theme: mat-light-theme($angular-login-primary, $angular-login-accent, $angular-login-warn);
+//@include angular-material-theme($angular-login-theme);
+@mixin responsive-grid-theme($theme) {
+  $primary: map-get($theme, primary);
+  $foreground: map-get($theme, foreground);
+
+  // responsive grid
+  .grid-list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    background: mat-color($primary);
+    text-decoration: none;
+    padding: 4px;
+    width: calc(100% - 10px);
+
+    &,
+    &:hover {
+      color: mat-color($foreground, text);
+    }
+
+    mat-icon:first-child {
+      text-align: center;
+      width: 40px;
+    }
+  }
+}
+
+@mixin custom-components-theme($theme) {
+}
+
+.default-theme {
+  @include angular-material-theme($angular-login-light-theme);
+  @include custom-components-theme($angular-login-light-theme);
+  @include responsive-grid-theme($angular-login-light-theme);
+}
+
+.light-theme {
+  // Include theme styles for core and each component used in your app.
+  // Alternatively, you can import and @include the theme mixins for each component
+  // that you are using.
+  @include angular-material-theme($angular-login-light-theme);
+  @include custom-components-theme($angular-login-light-theme);
+  @include responsive-grid-theme($angular-login-light-theme);
+}
+
+.dark-theme {
+  @include angular-material-theme($angular-login-dark-theme);
+  @include custom-components-theme($angular-login-dark-theme);
+  @include responsive-grid-theme($angular-login-dark-theme);
+}
+
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  padding: 16px;
+}
+
+.default-card {
+  max-width: 400px;
+}

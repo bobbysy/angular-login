@@ -1,0 +1,57 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
+  "extends": [
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:import/typescript",
+    "prettier",
+    "plugin:prettier/recommended",
+    "prettier/@typescript-eslint"
+  ],
+  // Following will be specified by plugin:@typescript-eslint above
+  "plugins": ["prettier", "@typescript-eslint"],
+  "settings": {
+    // Settings for eslint-plugin-import resolver
+    "import/resolver": {
+      // Settings for eslint-import-resolver-typescript to resolve TypeScript path mapping.
+      "typescript": {}
+    }
+  },
+  "parserOptions": {
+    // Following parserOptions specified by airbnb-base
+    //    "ecmaVersion": 2018,
+    //    "sourceType": "module",
+    // Options for @typescript-eslint/eslint-plugin
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    // prefer naming-convention rule
+    "@typescript-eslint/interface-name-prefix": "off",
+    // not applicable for Angular Framework
+    "class-methods-use-this": "off",
+    "no-useless-constructor": "off",
+    "import/prefer-default-export": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.spec.ts"],
+      "rules": {}
+    }
+  ]
+}
